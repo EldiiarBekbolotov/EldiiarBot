@@ -1,32 +1,46 @@
-from chatterbot import ChatBot
+from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
 
-# Uncomment the following lines to enable verbose logging
-# import logging
-# logging.basicConfig(level=logging.INFO)
+# Load pre-trained model and tokenizer
+tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-small")
+model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-small")
 
-# NOTE: The order of logic adapters is important
-# because the first logic adapter takes precedence
-# if a good response cannot be determined.
+# Chat history
+chat_history_ids = None
+step = 0
 
-# Create a new instance of a ChatBot
-bot = ChatBot('Terminal',
-              storage_adapter='chatterbot.storage.SQLStorageAdapter',
-              logic_adapters=[
-                  'chatterbot.logic.BestMatch',
-                  'chatterbot.logic.TimeLogicAdapter',
-                  'chatterbot.logic.MathematicalEvaluation'
-              ],
-              database_uri='sqlite:///database.sqlite3')
-
-print('Type something to begin...')
+print("Start chatting with the bot (type 'exit' to stop)")
 
 while True:
-	try:
-		user_input = input()
+    user_input = input(">> User: ")
+    if user_input.lower() == "exit":
+        break
 
-		bot_response = bot.get_response(user_input)
+    # Encode user input + chat history
+    new_input_ids = tokenizer.encode(user_input + tokenizer.eos_token, return_tensors='pt')
 
-		print(bot_response)
+    # If chat history exists, concatenate it with the new input
+    if chat_history_ids is not None:
+        bot_input_ids = torch.cat([chat_history_ids, new_input_ids], dim=-1)
+    else:
+        bot_input_ids = new_input_ids
 
-	except (KeyboardInterrupt, EOFError, SystemExit):
-		break
+    # Ensure the length of the tensor doesn't exceed the model's max input length
+    max_length = 1024  # GPT-2 model max length is typically 1024 tokens
+    bot_input_ids = bot_input_ids[:, -max_length:]  # Slice to keep the last 1024 tokens
+
+    # Create an attention mask for the input
+    attention_mask = torch.ones(bot_input_ids.shape, device=bot_input_ids.device)
+
+    # Generate response
+    chat_history_ids = model.generate(bot_input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id, attention_mask=attention_mask)
+
+    # Decode the response from the model
+    bot_output = tokenizer.decode(chat_history_ids[:, bot_input_ids.shape[-1]:][0], skip_special_tokens=True)
+
+    # Check if the model is repeating itself and handle it
+    if bot_output == user_input:
+        bot_output = "I'm not sure about that. Could you clarify?"
+
+    print(f"🤖 Bot: {bot_output}")
+    step += 1
