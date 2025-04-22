@@ -1,6 +1,6 @@
 import random
 
-with open("IDC20_Python_Project/model2.txt", "r", encoding="utf-8") as file:
+with open("model2.txt", "r", encoding="utf-8") as file:
     text = file.read().lower()
 
 text = text.replace('\n', ' ').replace('--', ' ')

@@ -1,4 +1,4 @@
-train_data = 'IDC20_Python_Project/model2.txt'
+train_data = 'model2.txt'
 
 first_possible_words = {}
 second_possible_words = {}
