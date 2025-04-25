@@ -1,26 +1,4 @@
-import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
-
-model_id = "microsoft/bitnet-b1.58-2B-4T"
-
-tokenizer = AutoTokenizer.from_pretrained(model_id)
-model = AutoModelForCausalLM.from_pretrained(
-    model_id,
-    torch_dtype=torch.bfloat16
-)
-
-messages = [
-    {"role": "system", "content": "You are a helpful AI assistant."},
-    {"role": "user", "content": "How are you?"},
-]
-prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-chat_input = tokenizer(prompt, return_tensors="pt").to(model.device)
-
-chat_outputs = model.generate(**chat_input, max_new_tokens=50)
-response = tokenizer.decode(chat_outputs[0][chat_input['input_ids'].shape[-1]:], skip_special_tokens=True) # Decode only the response part
-print("\nAssistant Response:", response)
-
-"""import time
+import time
 from transformers import pipeline
 
 # Load the text-generation pipeline with the specified model
@@ -82,4 +60,4 @@ def chat_with_bot():
 
 # Start the chat
 if __name__ == "__main__":
-    chat_with_bot()"""
+    chat_with_bot()
