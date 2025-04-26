@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EldiiarBot</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+    />
+
+    <style>
+      :root {
+        --main-bg: #1c1c1c;
+        --secondary-bg: #2a2a2a;
+        --accent: #e20707;
+        --accent-hover: #a50606;
+        --text-light: #e0e0e0;
+        --text-muted: #b0b0b0;
+        --font-primary: "IBM Plex Sans", sans-serif;
+        --font-secondary: "Noto Sans", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font-secondary);
+        background-color: var(--main-bg);
+        color: var(--text-light);
+        line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      #chat-box {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+        background-color: var(--secondary-bg);
+        border-bottom: 1px solid #444;
+        font-size: 15.5px;
+        scroll-behavior: smooth;
+      }
+
+      #chat-box p {
+        margin-bottom: 12px;
+      }
+
+      #chat-box strong {
+        color: var(--accent);
+      }
+
+      #corpus {
+        background-color: #202020;
+        display: flex;
+        align-items: center;
+        padding: 15px 20px;
+        border-top: 1px solid #333;
+      }
+
+      .textarea-parent {
+        flex-grow: 1;
+        position: relative;
+        margin-right: 5px;
+      }
+
+      textarea[type="text"] {
+        width: 100%;
+        height: 38px;
+        padding: 5px 15px;
+        border: 1px solid #444;
+        border-radius: 0px;
+        background-color: #2e2e2e;
+        color: var(--text-light);
+        font-size: 15.5px;
+        font-family: var(--font-primary);
+        resize: none;
+        transition: all 0.2s ease-in-out;
+      }
+
+      textarea[type="text"]:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 1px var(--accent);
+      }
+
+      .textarea-underline {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 5px;
+        width: 0;
+        height: 2px;
+        background-color: var(--accent);
+        transition: width 0.3s ease;
+      }
+
+      .effect-1:focus ~ .textarea-underline {
+        width: 100%;
+      }
+
+      button {
+        background-color: var(--accent);
+        color: white;
+        font-family: var(--font-primary);
+        border: none;
+        padding: 0px 20px;
+        margin-top: -6px;
+        border-radius: 0px;
+        font-size: 15px;
+        font-weight: 600;
+        height: 38px;
+        line-height: 38px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-transform: uppercase;
+      }
+
+      button:hover {
+        background-color: var(--accent-hover);
+      }
+
+      button:active {
+        outline: 2px solid #fff;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        transition: 0.3s;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      nav {
+        background-color: var(--accent);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 60px;
+        line-height: 60px;
+      }
+      nav h1 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div style="display: flex; align-items: center; padding: 10px">
+        <h1>EldiiarBot</h1>
+      </div>
+    </nav>
+    <div style="height: 60px"></div>
+    <div id="chat-box">
+      <!-- Messages will appear here -->
+    </div>
+    <div id="corpus">
+      <div class="textarea-parent">
+        <textarea
+          class="effect-1"
+          type="text"
+          placeholder="Ask me anything..."
+          id="user-textarea"
+          autocomplete="off"
+        ></textarea>
+        <span class="textarea-underline"></span>
+      </div>
+      <button id="send-btn">Send</button>
+    </div>
+    <script>
+      document
+        .getElementById("send-btn")
+        .addEventListener("click", function () {
+          var userMessage = document.getElementById("user-textarea").value;
+          if (!userMessage.trim()) return;
+
+          document.getElementById("user-textarea").value = "";
+
+          var chatBox = document.getElementById("chat-box");
+          chatBox.innerHTML +=
+            "<p><strong>You:</strong> " + userMessage + "</p>";
+
+          fetch("/chat", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ message: userMessage }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.response) {
+                chatBox.innerHTML +=
+                  "<p><strong>Bot:</strong> " + data.response + "</p>";
+              } else if (data.error) {
+                chatBox.innerHTML +=
+                  "<p><strong>Error:</strong> " + data.error + "</p>";
+              } else {
+                chatBox.innerHTML +=
+                  "<p><strong>Error:</strong> Unexpected response.</p>";
+              }
+              chatBox.scrollTop = chatBox.scrollHeight;
+            })
+            .catch((error) => {
+              chatBox.innerHTML +=
+                "<p><strong>Error:</strong> " + error.message + "</p>";
+              chatBox.scrollTop = chatBox.scrollHeight;
+            });
+        });
+    </script>
+  </body>
+</html>
