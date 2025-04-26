@@ -1,10 +1,13 @@
 # (c) 2025 Eldiiar Bekbolotov. Licensed under the MIT License.
+import os
+from dotenv import load_dotenv
+load_dotenv()
 from flask import Flask, request, jsonify, render_template
 from groq import Groq
 import re
 # Setup Flask app
 app = Flask(__name__)
-client = Groq(api_key='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')
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 # Function format_response: formats response text 
 # to HTML featuring tags for bold, italic, code blocks, and inline code
 def format_response(text):
