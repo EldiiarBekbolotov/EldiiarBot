@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EldiiarBot</title>
+    <title>About | EldiiarBot</title>
+
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -42,17 +43,13 @@
   <body>
     <nav class="navrail">
       <a class="fader mlink hide"></a>
-      <a class="fader mlink" href="javascript:switchScene(0);">
-        <i class="material-symbols-rounded">home</i>
-        Home</a
+      <a class="fader mlink" style="visibility: hidden"
+        ><i class="material-symbols-rounded">settings</i> Settings</a
+      ><a class="fader mlink hide"></a>
+      <a class="fader mlink" href="index.html"
+        ><i class="material-symbols-rounded">home</i> Back</a
       >
-      <a class="fader mlink" href="about.html"
-        ><i class="material-symbols-rounded">info</i> About</a
-      >
-      <a class="fader mlink" href="javascript:switchScene(1);"
-        ><i class="material-symbols-rounded">lightbulb</i> Hub</a
-      >
-      <a class="fader mlink" href="javascript:switchScene(2);"
+      <a class="fader mlink" style="visibility: hidden"
         ><i class="material-symbols-rounded">settings</i> Settings</a
       ><a class="fader mlink hide"></a>
     </nav>
@@ -67,46 +64,10 @@
         overflow: hidden;
       "
     >
-      <div id="chat-box">
-        <!-- Messages will appear here -->
-      </div>
-      <div
-        id="loading"
-        style="display: none; text-align: center; margin-top: 10px"
-      >
-        <span
-          class="material-symbols-rounded"
-          style="font-size: 32px; animation: spin 0.8s ease-in-out infinite"
-          >loop</span
-        >
-        <p>Thinking...</p>
-      </div>
-
-      <div id="corpus">
-        <div class="textarea-parent">
-          <textarea
-            class="effect-1"
-            type="text"
-            placeholder="Ask me anything..."
-            id="user-textarea"
-            autocomplete="off"
-          ></textarea>
-          <span class="textarea-underline"></span>
-        </div>
-        <button id="send-btn">
-          <span class="material-symbols-rounded">send</span>
-        </button>
+      <div style="padding: 20px">
+        <h1>About</h1>
+        <p>Author: Eldiiar Bekbolotov<br />First Released: April 2025</p>
       </div>
     </div>
-
-    <div class="scene" style="left: 80px; position: absolute">
-      <h1 style="font-size: 90px">Hub</h1>
-    </div>
-    <div class="scene" style="left: 80px; position: absolute">
-      <div style="padding: 45px">
-        <h1>Settings</h1>
-      </div>
-    </div>
-    <script src="/static/js/main.js" defer></script>
   </body>
 </html>
