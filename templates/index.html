@@ -295,6 +295,15 @@
       span.material-symbols-rounded {
         vertical-align: middle;
       }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
     </style>
   </head>
   <body>
@@ -304,21 +313,15 @@
       <!-- 
           Each link leads to a different page from the Navigation Rail
           -->
-      <a
-        class="fader mlink"
-        href="javascript:switchScene(1); window.scroll(0, 0);"
-      >
+      <a class="fader mlink" href="javascript:switchScene(1);">
         <i class="material-symbols-rounded">home</i>
         Home</a
       >
-      <a class="fader mlink" href="javascript:switchScene(2);"
-        ><i class="material-symbols-rounded">lightbulb</i> About</a
-      >
-      <a class="fader mlink" href="javascript:switchScene(3);"
-        ><i class="material-symbols-rounded">store</i> Pricing</a
+      <a class="fader mlink" href="about.html"
+        ><i class="material-symbols-rounded">info</i> About</a
       >
       <a class="fader mlink" href="javascript:switchScene(4);"
-        ><i class="material-symbols-rounded">globe_uk</i> Hub</a
+        ><i class="material-symbols-rounded">lightbulb</i> Hub</a
       >
       <a class="fader mlink" href="javascript:switchScene(5);"
         ><i class="material-symbols-rounded">settings</i> Settings</a
@@ -337,6 +340,18 @@
       <div id="chat-box">
         <!-- Messages will appear here -->
       </div>
+      <div
+        id="loading"
+        style="display: none; text-align: center; margin-top: 10px"
+      >
+        <span
+          class="material-symbols-rounded"
+          style="font-size: 32px; animation: spin 0.8s ease-in-out infinite"
+          >loop</span
+        >
+        <p>Thinking...</p>
+      </div>
+
       <div id="corpus">
         <div class="textarea-parent">
           <textarea
@@ -366,6 +381,8 @@
           chatBox.innerHTML +=
             "<p><strong>You:</strong> " + userMessage + "</p>";
 
+          document.getElementById("loading").style.display = "block";
+
           fetch("/chat", {
             method: "POST",
             headers: {
@@ -375,6 +392,7 @@
           })
             .then((response) => response.json())
             .then((data) => {
+              document.getElementById("loading").style.display = "none";
               if (data.response) {
                 chatBox.innerHTML +=
                   "<p><strong>Bot:</strong> " + data.response + "</p>";
@@ -388,6 +406,7 @@
               chatBox.scrollTop = chatBox.scrollHeight;
             })
             .catch((error) => {
+              document.getElementById("loading").style.display = "none";
               chatBox.innerHTML +=
                 "<p><strong>Error:</strong> " + error.message + "</p>";
               chatBox.scrollTop = chatBox.scrollHeight;
