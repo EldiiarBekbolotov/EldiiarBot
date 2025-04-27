@@ -65,12 +65,24 @@
       "
     >
       <div style="padding: 20px">
-        <h1>About</h1>
-        <p>Author: Eldiiar Bekbolotov<br />First Released: April 2025</p>
+        <h1><span class="material-symbols-rounded">info</span> About</h1>
+        <p>
+          <b>Author</b>: Eldiiar Bekbolotov<br /><b>First released</b>: April
+          2025
+        </p>
 
-        <p>Views: {{ stats["views"] }}</p>
-        <p>Upvotes: {{ stats["upvotes"] }}</p>
-        <a href="/upvote">Upvote</a>
+        <p style="margin-bottom: 24px">
+          <b>Total views since deployment: </b
+          ><span class="material-symbols-rounded">visibility</span>
+          {{ stats["views"] }}
+        </p>
+
+        <a href="/upvote" style="text-decoration: none"
+          ><button class="vote">
+            Upvote <span class="material-symbols-rounded">recommend</span> {{
+            stats["upvotes"] }}
+          </button></a
+        >
       </div>
     </div>
   </body>

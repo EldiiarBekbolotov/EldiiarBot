@@ -16,5 +16,6 @@ and once you're done
 `rm -rf venv/`
 `rm -rf __pycache__`
 `git add .`
+`git rm --cached .env`
 `git commit -m "Add version/commit msg"`
 `git push origin main`
