@@ -1,3 +1,6 @@
+# (c) 2025 Eldiiar Bekbolotov. Licensed under the MIT License.
+
+# Necessary imports
 import psycopg2
 import os
 from dotenv import load_dotenv

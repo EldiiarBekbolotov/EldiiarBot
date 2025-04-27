@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-JZYXYEHQZ1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-JZYXYEHQZ1");
+    </script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EldiiarBot</title>
+    <meta
+      property="og:title"
+      content="EldiiarBot - Web App by Eldiiar Bekbolotov | Python + LLMs"
+    />
+    <meta
+      property="og:description"
+      content="EldiiarBot is a web app created by Eldiiar Bekbolotov that combines Python and fast LLMs."
+    />
+    <meta property="og:url" content="https://eldiiarbot.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="EldiiarBot" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="EldiiarBot - Web App by Eldiiar Bekbolotov | Python + LLMs"
+    />
+    <meta
+      name="twitter:description"
+      content="EldiiarBot is a web app created by Eldiiar Bekbolotov that combines Python and fast LLMs."
+    />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -56,19 +90,39 @@
         ><i class="material-symbols-rounded">settings</i> Settings</a
       ><a class="fader mlink hide"></a>
     </nav>
-    <div
-      class="scene"
-      style="
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 80px;
-        overflow: hidden;
-      "
-    >
+    <nav class="mobile-nav">
+      <a class="fader mlink" href="javascript:switchScene(0);">
+        <i class="material-symbols-rounded">home</i>
+      </a>
+      <a class="fader mlink" href="/about"
+        ><i class="material-symbols-rounded">info</i>
+      </a>
+      <a class="fader mlink" href="javascript:switchScene(1);"
+        ><i class="material-symbols-rounded">lightbulb</i>
+      </a>
+      <a class="fader mlink" href="javascript:switchScene(2);"
+        ><i class="material-symbols-rounded">settings</i>
+      </a>
+    </nav>
+    <div class="scene" id="chatscene">
       <div id="chat-box">
-        <!-- Messages will appear here -->
+        <div style="text-align: center" id="greeting">
+          <img
+            src="/static/android-chrome-512x512.png"
+            alt="EldiiarBot"
+            width="100"
+          />
+          <h1
+            style="
+              margin: 10px 0 30px 0px;
+              font-weight: 300;
+              color: rgb(167, 167, 167);
+            "
+          >
+            Hello, I am <b style="font-weight: 500; color: #fff">EldiiarBot</b>!
+            What can I help with?
+          </h1>
+        </div>
       </div>
       <div
         id="loading"
@@ -81,7 +135,6 @@
         >
         <p>Thinking...</p>
       </div>
-
       <div id="corpus">
         <div class="textarea-parent">
           <textarea
@@ -99,12 +152,21 @@
       </div>
     </div>
 
-    <div class="scene" style="left: 80px; position: absolute">
-      <h1 style="font-size: 90px">Hub</h1>
-    </div>
-    <div class="scene" style="left: 80px; position: absolute">
+    <div class="scene">
       <div style="padding: 45px">
-        <h1>Settings</h1>
+        <h1 style="font-size: 50px">
+          <span class="material-symbols-rounded" style="font-size: 50px"
+            >robot</span
+          >
+          LLM Hub
+        </h1>
+        <p>Blazing fast LLMs with a wide array of functions.</p>
+      </div>
+    </div>
+    <div class="scene">
+      <div style="padding: 45px">
+        <h1><span class="material-symbols-rounded">settings</span> Settings</h1>
+        <p>Configuration options for display, theme, and token usage.</p>
       </div>
     </div>
     <script src="/static/js/main.js" defer></script>
