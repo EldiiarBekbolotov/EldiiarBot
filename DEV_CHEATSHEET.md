@@ -11,7 +11,7 @@ Mac:
 and once you're done
 `deactivate`
 `rm -rf venv/`
-`rm -rf __pycache`
+`rm -rf __pycache__`
 `git add .`
 `git commit -m "Add version/commit msg"`
 `git push origin main`

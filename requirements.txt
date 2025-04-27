@@ -21,3 +21,4 @@ typing_extensions==4.13.2
 Werkzeug==3.1.3
 python-dotenv
 gunicorn
+psycopg2==2.9.5

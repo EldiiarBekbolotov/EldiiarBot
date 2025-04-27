@@ -46,7 +46,7 @@
       <a class="fader mlink" style="visibility: hidden"
         ><i class="material-symbols-rounded">settings</i> Settings</a
       ><a class="fader mlink hide"></a>
-      <a class="fader mlink" href="index.html"
+      <a class="fader mlink" href="/"
         ><i class="material-symbols-rounded">home</i> Back</a
       >
       <a class="fader mlink" style="visibility: hidden"
@@ -67,6 +67,10 @@
       <div style="padding: 20px">
         <h1>About</h1>
         <p>Author: Eldiiar Bekbolotov<br />First Released: April 2025</p>
+
+        <p>Views: {{ stats["views"] }}</p>
+        <p>Upvotes: {{ stats["upvotes"] }}</p>
+        <a href="/upvote">Upvote</a>
       </div>
     </div>
   </body>
