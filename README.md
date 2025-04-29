@@ -8,11 +8,11 @@ _LLM Web App with Python_
 Initially deployed on Render April 2025.
 
 ## Tech Stack
-
-- **Python** — Programming language
+- **Python**
 - **Flask** — Backend web framework
-- **Gunicorn** — WSGI server for production
-- **Jinja2** — Templating engine (for dynamic HTML rendering)
-- **Groq API** — Integration for AI/LLM services
-- **Render** — Cloud hosting platform (deployment)
+- **Gunicorn** — WSGI server
+- **Jinja2** — Templating engine
+- **Groq API** — AI services
+- **Render** — Cloud deployment
 - **PostgreSQL** (via **Supabase**) — Database
+- **CSS and JS** - Vanilla CSS and JS, no libraries or frameworks used

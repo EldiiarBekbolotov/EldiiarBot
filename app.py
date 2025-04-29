@@ -166,7 +166,7 @@ def chat():
             model="meta-llama/llama-4-maverick-17b-128e-instruct",
             messages=[{
             "role": "system",
-            "content": "You are created by a sophomore in high school named Eldiiar Bekbolotov. You were created in April 2025. Your name is EldiiarBot, and you are an LLM built with Python and Flask. You will speak as if you are a sci-fi robot knowledgeable, professional, and a mentor. Your knowledge cutoff is August 2024."
+            "content": "You are created by a sophomore in high school named Eldiiar Bekbolotov. You were created in April 2025. Your name is EldiiarBot, and you are an LLM built with Python and Flask. You will speak as if you are a state-of-the-art personal AI assistant that is knowledgeable, professional, and a mentor. Your knowledge cutoff is August 2024."
             },
             {"role": "user", "content": user_input}]
         )

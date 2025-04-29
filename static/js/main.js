@@ -44,7 +44,7 @@ function sendMessage() {
     .then((data) => {
       document.getElementById("loading").style.display = "none";
       if (data.response) {
-        chatBox.innerHTML +=
+        chatBox.innerText +=
           "<p><strong>EldiiarBot:</strong> " + data.response + "</p>";
       } else if (data.error) {
         chatBox.innerHTML +=
