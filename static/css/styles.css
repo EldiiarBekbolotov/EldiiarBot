@@ -1,5 +1,7 @@
+/* (c) 2025 Eldiiar Bekbolotov. Licensed under the MIT License. */
+
 :root {
-  --main-bg: #1c1c1c;
+  /*--main-bg: #1c1c1c;
   --secondary-bg: #2a2a2a;
   --accent: #8200db;
   --accent-hover: #59168b;
@@ -13,6 +15,22 @@
   --icon-hover-color: rgb(227, 227, 227);
   --icon-active-color: #c2e7ff;
   --icon-active-bg-color: rgb(0, 74, 119);
+  --text-color: rgb(199, 196, 198);
+  --text-hover-color: rgb(255, 255, 255);*/
+  --main-bg: #1c1c1c;
+  --secondary-bg: #202020;
+  --accent: #db0b00;
+  --accent-hover: #8b1a16;
+  --text-light: #e0e0e0;
+  --text-muted: #b0b0b0;
+  --font-primary: "IBM Plex Sans", sans-serif;
+  --font-secondary: "Noto Sans", sans-serif;
+  --navrail-bg-color: rgb(40, 27, 27);
+  --icon-color: #c4c7c5;
+  --icon-hover-bg-color: rgb(93, 63, 63);
+  --icon-hover-color: rgb(227, 227, 227);
+  --icon-active-color: #ffc2c2;
+  --icon-active-bg-color: rgb(119, 0, 0);
   --text-color: rgb(199, 196, 198);
   --text-hover-color: rgb(255, 255, 255);
 }
@@ -31,6 +49,47 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow-x: hidden;
+}
+.splashscreen {
+  background-color: #000;
+  background-image: url("https://images.unsplash.com/photo-1734917141553-274732d788cb?q=80&w=1406&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  box-shadow: inset -100vw -100vw 0px 0px rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: calc(100vw - 80px);
+  height: 80vh;
+  position: relative;
+}
+.splashscreen .middle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.splashscreen h1 {
+  font-size: 50px;
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 0px;
+  font-family: "IBM Plex Sans", sans-serif;
+  text-align: center;
+  margin-top: 20px;
+}
+.splashscreen h1 em {
+  font-family: monospace;
+  font-weight: 800;
+  text-shadow: -3px 0px 0px rgba(242, 32, 9, 0.762);
+}
+.splashscreen p {
+  font-size: 20px;
+  color: #fff;
+  font-weight: 100;
+  letter-spacing: 0.5px;
+  font-family: "Noto Sans", sans-serif;
 }
 .logo-icon {
   width: 20px;
@@ -313,9 +372,11 @@ nav.navrail a.mlink.active:hover i.material-symbols-rounded {
   background-color: var(--icon-active-hover-bg-color);
 }
 
-/* Hide mobile nav by default */
 nav.mobile-nav {
   display: none;
+}
+.splashscreen {
+  width: 100vw;
 }
 #chatscene {
   position: fixed;
@@ -328,9 +389,50 @@ nav.mobile-nav {
 .scene {
   position: absolute;
   left: 80px;
+  width: calc(100vw - 80px);
 }
-/* Mobile nav styles for small screens */
+
+#greeting {
+  background-image: url("https://images.unsplash.com/photo-1656077217715-bdaeb06bd01f?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100vw;
+  box-shadow: inset -100vw -100vw 0px 0px rgba(0, 0, 0, 0.6);
+  padding-top: 80px;
+  padding-left: 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  opacity: 0;
+  animation: display-greeting 2s forwards;
+}
+#greeting h1 {
+  opacity: 0;
+  animation: display-greeting 1s forwards;
+  animation-delay: 1s;
+}
+@keyframes display-greeting {
+  0% {
+    opacity: 0;
+    margin-top: 20px;
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0px;
+  }
+}
+
 @media (max-width: 600px) {
+  #greeting {
+    padding-left: 0px;
+  }
   #chatscene {
     left: 0px;
     top: 55px;
@@ -338,6 +440,7 @@ nav.mobile-nav {
   .scene {
     top: 55px;
     left: 0px;
+    width: 100vw;
   }
   nav.navrail {
     display: none; /* Hide sidebar */
@@ -387,8 +490,6 @@ nav.mobile-nav {
   nav.mobile-nav a.mlink:focus {
     outline: 2px solid var(--accent);
   }
-
-  /* Adjust chat box for top navbar */
   #chat-box {
     padding-top: 70px;
   }
@@ -409,7 +510,6 @@ nav.mobile-nav {
 span.material-symbols-rounded {
   vertical-align: middle;
 }
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -425,28 +525,5 @@ span.material-symbols-rounded {
   }
   100% {
     opacity: 1;
-  }
-}
-
-#greeting {
-  opacity: 0;
-  animation: display-greeting 2s forwards;
-}
-#greeting h1 {
-  opacity: 0;
-  animation: display-greeting 1s forwards;
-  animation-delay: 1s;
-}
-@keyframes display-greeting {
-  0% {
-    opacity: 0;
-    margin-top: 20px;
-  }
-  30% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-    margin-top: 0px;
   }
 }

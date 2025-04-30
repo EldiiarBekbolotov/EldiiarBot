@@ -116,25 +116,15 @@
             style="
               margin: 10px 0 30px 0px;
               font-weight: 300;
-              color: rgb(167, 167, 167);
+              color: rgb(255, 255, 255);
             "
           >
             Hello, I am <b style="font-weight: 500; color: #fff">EldiiarBot</b>!
-            What can I help with?
+            What's on your mind today?
           </h1>
         </div>
       </div>
-      <div
-        id="loading"
-        style="display: none; text-align: center; margin-top: 10px"
-      >
-        <span
-          class="material-symbols-rounded"
-          style="font-size: 32px; animation: spin 0.8s ease-in-out infinite"
-          >loop</span
-        >
-        <p>Thinking...</p>
-      </div>
+
       <div id="corpus">
         <div class="textarea-parent">
           <textarea
@@ -149,6 +139,26 @@
         <button id="send-btn" class="btn">
           <span class="material-symbols-rounded">send</span>
         </button>
+      </div>
+      <div
+        id="loading"
+        style="
+          display: none;
+          text-align: center;
+          margin-top: 10px;
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: #000;
+        "
+      >
+        <span
+          class="material-symbols-rounded"
+          style="font-size: 32px; animation: spin 0.8s ease-in-out infinite"
+          >loop</span
+        >
+        <p id="timer"></p>
       </div>
     </div>
 

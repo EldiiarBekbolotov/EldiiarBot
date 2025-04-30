@@ -71,7 +71,10 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
     />
-
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
     <link rel="stylesheet" href="/static/css/styles.css" />
   </head>
   <body>
@@ -87,30 +90,37 @@
         ><i class="material-symbols-rounded">settings</i> Settings</a
       ><a class="fader mlink hide"></a>
     </nav>
-    <div
-      class="scene"
-      style="
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 80px;
-        overflow: hidden;
-      "
-    >
+    <nav class="mobile-nav">
+      <a class="fader mlink" href="/"
+        ><i class="material-symbols-rounded">home</i></a
+      >
+    </nav>
+    <div class="scene">
+      <div class="splashscreen" style="text-align: center">
+        <div class="middle">
+          <h1>Your Fast, Free <em>AI</em> Assistant</h1>
+          <p>
+            EldiiarBot is a suite of AI assistants designed to help with a
+            variety of everyday tasks.
+          </p>
+        </div>
+      </div>
+
       <div style="padding: 20px">
         <h1><span class="material-symbols-rounded">info</span> About</h1>
         <p>
-          <b>Author</b>: Eldiiar Bekbolotov<br /><b>First released</b>: April
-          2025
+          Eldiiar Bekbolotov developed EldiiarBot as a sophomore in high school.
+          You can follow him on GitHub
+          <a href="https://github.com/EldiiarBekbolotov" target="_blank"
+            >@EldiiarBekbolotov</a
+          >, as well as find the source code for this MIT-licensed project
+          there.<br /><b>First released</b>: April 2025
         </p>
-
         <p style="margin-bottom: 24px">
           <b>Total views since deployment: </b
           ><span class="material-symbols-rounded">visibility</span>
           {{ stats["views"] }}
         </p>
-
         <a href="/upvote" style="text-decoration: none"
           ><button class="vote">
             Upvote <span class="material-symbols-rounded">recommend</span> {{
