@@ -179,7 +179,7 @@
           style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 30px"
         >
           <button class="bot-card" onclick="selectPersona('default')">
-            EldiiarBot<br /><span class="bot-desc">General purpose AI</span>
+            EldiiarBot<br /><span class="bot-desc">General purpose</span>
           </button>
           <button class="bot-card" onclick="selectPersona('scientist')">
             Scientist<br /><span class="bot-desc">Analytical and precise</span>
@@ -193,7 +193,7 @@
             Philosopher<br /><span class="bot-desc">Deep and reflective</span>
           </button>
           <button class="bot-card" onclick="selectPersona('humorist')">
-            Humorist<br /><span class="bot-desc">Witty and playful</span>
+            Joker<br /><span class="bot-desc">Funny and playful</span>
           </button>
         </div>
       </div>
@@ -201,7 +201,18 @@
     <div class="scene">
       <div style="padding: 45px">
         <h1><span class="material-symbols-rounded">settings</span> Settings</h1>
-        <p>Configuration options for display, theme, and token usage.</p>
+
+        <label for="theme-selector">Choose Theme:</label>
+        <select id="theme-selector">
+          <option value="theme-dark-1">Dark Red</option>
+          <option value="theme-dark-2">Dark Blue</option>
+          <option value="theme-dark-3">Dark Green</option>
+          <option value="theme-dark-4">Dark Mono</option>
+          <option value="theme-light-1">Light Default</option>
+          <option value="theme-light-2">Light Pastel</option>
+          <option value="theme-light-3">Light Mono</option>
+          <option value="theme-light-4">High Contrast</option>
+        </select>
       </div>
     </div>
     <script src="/static/js/main.js" defer></script>

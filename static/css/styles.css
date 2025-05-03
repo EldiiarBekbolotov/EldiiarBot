@@ -34,6 +34,156 @@
   --text-color: rgb(199, 196, 198);
   --text-hover-color: rgb(255, 255, 255);
 }
+.theme-dark-1 {
+  --main-bg: #1c1c1c;
+  --secondary-bg: #202020;
+  --accent: #db0b00;
+  --accent-hover: #8b1a16;
+  --text-light: #e0e0e0;
+  --text-muted: #b0b0b0;
+  --font-primary: "IBM Plex Sans", sans-serif;
+  --font-secondary: "Noto Sans", sans-serif;
+  --navrail-bg-color: rgb(40, 27, 27);
+  --icon-color: #c4c7c5;
+  --icon-hover-bg-color: rgb(93, 63, 63);
+  --icon-hover-color: rgb(227, 227, 227);
+  --icon-active-color: #ffc2c2;
+  --icon-active-bg-color: rgb(119, 0, 0);
+  --text-color: rgb(199, 196, 198);
+  --text-hover-color: rgb(255, 255, 255);
+}
+
+.theme-dark-2 {
+  --main-bg: #121a26;
+  --secondary-bg: #1c2430;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --text-light: #e0f2ff;
+  --text-muted: #a3b8cc;
+  --font-primary: "IBM Plex Sans", sans-serif;
+  --font-secondary: "Noto Sans", sans-serif;
+  --navrail-bg-color: #18222e;
+  --icon-color: #b0c4d0;
+  --icon-hover-bg-color: #2d3a4b;
+  --icon-hover-color: #ffffff;
+  --icon-active-color: #93c5fd;
+  --icon-active-bg-color: #1e3a8a;
+  --text-color: #d0d7e2;
+  --text-hover-color: #ffffff;
+}
+
+.theme-dark-3 {
+  --main-bg: #122016;
+  --secondary-bg: #1a2a1a;
+  --accent: #34d399;
+  --accent-hover: #059669;
+  --text-light: #d1fae5;
+  --text-muted: #9ca3af;
+  --font-primary: "IBM Plex Sans", sans-serif;
+  --font-secondary: "Noto Sans", sans-serif;
+  --navrail-bg-color: #163321;
+  --icon-color: #a7f3d0;
+  --icon-hover-bg-color: #245239;
+  --icon-hover-color: #ffffff;
+  --icon-active-color: #6ee7b7;
+  --icon-active-bg-color: #065f46;
+  --text-color: #d1d5db;
+  --text-hover-color: #ffffff;
+}
+
+.theme-dark-4 {
+  --main-bg: #111111;
+  --secondary-bg: #1a1a1a;
+  --accent: #888888;
+  --accent-hover: #aaaaaa;
+  --text-light: #cccccc;
+  --text-muted: #777777;
+  --font-primary: "IBM Plex Sans", sans-serif;
+  --font-secondary: "Noto Sans", sans-serif;
+  --navrail-bg-color: #191919;
+  --icon-color: #aaaaaa;
+  --icon-hover-bg-color: #2a2a2a;
+  --icon-hover-color: #ffffff;
+  --icon-active-color: #e0e0e0;
+  --icon-active-bg-color: #444444;
+  --text-color: #d0d0d0;
+  --text-hover-color: #ffffff;
+}
+.theme-light-1 {
+  --main-bg: #ffffff;
+  --secondary-bg: #f9f9f9;
+  --accent: #0078d7;
+  --accent-hover: #005fa3;
+  --text-light: #1c1c1c;
+  --text-muted: #555555;
+  --font-primary: "IBM Plex Sans", sans-serif;
+  --font-secondary: "Noto Sans", sans-serif;
+  --navrail-bg-color: #eeeeee;
+  --icon-color: #4a4a4a;
+  --icon-hover-bg-color: #dcdcdc;
+  --icon-hover-color: #000000;
+  --icon-active-color: #0078d7;
+  --icon-active-bg-color: #cce4ff;
+  --text-color: #000000;
+  --text-hover-color: #000000;
+}
+
+.theme-light-2 {
+  --main-bg: #fdf6f0;
+  --secondary-bg: #fbe9e7;
+  --accent: #f48fb1;
+  --accent-hover: #f06292;
+  --text-light: #4a4a4a;
+  --text-muted: #888888;
+  --font-primary: "IBM Plex Sans", sans-serif;
+  --font-secondary: "Noto Sans", sans-serif;
+  --navrail-bg-color: #fde0dc;
+  --icon-color: #b65a69;
+  --icon-hover-bg-color: #f8bbd0;
+  --icon-hover-color: #880e4f;
+  --icon-active-color: #ff80ab;
+  --icon-active-bg-color: #f48fb1;
+  --text-color: #333333;
+  --text-hover-color: #000000;
+}
+
+.theme-light-3 {
+  --main-bg: #f4f4f4;
+  --secondary-bg: #eaeaea;
+  --accent: #666666;
+  --accent-hover: #444444;
+  --text-light: #222222;
+  --text-muted: #666666;
+  --font-primary: "IBM Plex Sans", sans-serif;
+  --font-secondary: "Noto Sans", sans-serif;
+  --navrail-bg-color: #dcdcdc;
+  --icon-color: #555555;
+  --icon-hover-bg-color: #bbbbbb;
+  --icon-hover-color: #000000;
+  --icon-active-color: #000000;
+  --icon-active-bg-color: #999999;
+  --text-color: #111111;
+  --text-hover-color: #000000;
+}
+
+.theme-light-4 {
+  --main-bg: #ffffff;
+  --secondary-bg: #e6e6e6;
+  --accent: #000000;
+  --accent-hover: #333333;
+  --text-light: #000000;
+  --text-muted: #444444;
+  --font-primary: "IBM Plex Sans", sans-serif;
+  --font-secondary: "Noto Sans", sans-serif;
+  --navrail-bg-color: #c0c0c0;
+  --icon-color: #000000;
+  --icon-hover-bg-color: #aaaaaa;
+  --icon-hover-color: #000000;
+  --icon-active-color: #000000;
+  --icon-active-bg-color: #cccccc;
+  --text-color: #000000;
+  --text-hover-color: #000000;
+}
 
 * {
   box-sizing: border-box;
@@ -118,7 +268,7 @@ body {
 }
 
 #corpus {
-  background-color: #202020;
+  background-color: var(--secondary-bg);
   display: flex;
   position: fixed;
   bottom: 0;
@@ -139,9 +289,9 @@ textarea[type="text"] {
   width: 100%;
   height: 38px;
   padding: 5px 15px;
-  border: 1px solid #444;
+  border: 1px solid var(--text-muted);
   border-radius: 0px;
-  background-color: #2e2e2e;
+  background-color: var(--navrail-bg-color);
   color: var(--text-light);
   font-size: 15.5px;
   font-family: var(--font-primary);
