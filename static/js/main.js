@@ -9,6 +9,19 @@ var switchScene = function (index) {
   scenes[index].style.animation = "1s fade-in forwards";
 };
 switchScene(0);
+let selectedPersona = localStorage.getItem("persona") || "default";
+
+function selectPersona(personaKey) {
+  selectedPersona = personaKey;
+  localStorage.setItem("persona", personaKey);
+  switchScene(0); // Go back to main chat screen
+  document.getElementById("greeting").innerHTML = `
+  <img src="/static/android-chrome-512x512.png" alt="EldiiarBot" width="100" />
+  <h1 style="margin: 10px 0 30px 0px; font-weight: 300; color: #fff">
+    You’re chatting with <b style="font-weight: 500; color: #fff">${selectedPersona}</b>.
+  </h1>
+`;
+}
 
 document.getElementById("send-btn").addEventListener("click", sendMessage);
 
@@ -54,7 +67,7 @@ function sendMessage() {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ message: userMessage }),
+    body: JSON.stringify({ message: userMessage, persona: selectedPersona }),
   })
     .then((response) => response.json())
     .then((data) => {

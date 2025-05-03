@@ -527,3 +527,25 @@ span.material-symbols-rounded {
     opacity: 1;
   }
 }
+
+.bot-card {
+  background: #1c1c1c;
+  border: 2px solid #444;
+  border-radius: 12px;
+  padding: 16px 24px;
+  font-size: 18px;
+  font-family: "IBM Plex Sans", sans-serif;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.bot-card:hover {
+  background: #2a2a2a;
+  border-color: #888;
+}
+.bot-desc {
+  font-size: 14px;
+  color: #bbb;
+  display: block;
+  margin-top: 4px;
+}
