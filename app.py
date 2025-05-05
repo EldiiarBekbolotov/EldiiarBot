@@ -2,6 +2,8 @@
 
 # Necessary imports
 import os
+import re
+import html
 import psycopg2
 from dotenv import load_dotenv
 
@@ -20,47 +22,34 @@ client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 
 def format_response(text):
-    # Extract reference definitions for links and images
-    ref_links = {}
-    ref_images = {}
-    lines = text.split("\n")
-    filtered_lines = []
-    for line in lines:
-        m_img = re.match(r"!\[([^\]]+)\]:\s*(\S+)", line)
-        m_link = re.match(r"\[([^\]]+)\]:\s*(\S+)", line)
-        if m_img:
-            ref_images[m_img.group(1)] = m_img.group(2)
-        elif m_link:
-            ref_links[m_link.group(1)] = m_link.group(2)
-        else:
-            filtered_lines.append(line)
-    text = "\n".join(filtered_lines)
+    # Escape any HTML tags to prevent script execution
+    text = html.escape(text)
 
     # 1. Fenced code blocks
     def repl_code_block(m):
         lang = m.group(1) or ""
         code = m.group(2)
         class_attr = f' class="{lang}"' if lang else ""
-        return f"<pre><code{class_attr}>{code}</code></pre>"
+        return f"<pre><code{class_attr}>{html.escape(code)}</code></pre>"
 
     text = re.sub(r"```(\w+)?\n([\s\S]*?)```", repl_code_block, text)
 
     # 2. Inline code
     text = re.sub(r"`([^`]+)`", r"<code>\1</code>", text)
 
-    # 3. Headers
+    # 3. Headers (H1 to H6)
     for i in range(6, 0, -1):
         text = re.sub(
             r"^" + r"\#" * i + r"\s*(.+)$",
-            lambda m, level=i: f"<h{level}>{m.group(1)}</h{level}>",
+            lambda m, level=i: f"<h{level}>{html.escape(m.group(1))}</h{level}>",
             text,
             flags=re.MULTILINE,
         )
 
-    # 4. Blockquotes (group consecutive lines)
+    # 4. Blockquotes
     def repl_blockquote(m):
         content = re.sub(r"^>\s?", "", m.group(0), flags=re.MULTILINE)
-        return f"<blockquote>{content}</blockquote>"
+        return f"<blockquote>{html.escape(content)}</blockquote>"
 
     text = re.sub(r"(^>\s?.+(?:\n>.*)*)", repl_blockquote, text, flags=re.MULTILINE)
 
@@ -72,18 +61,18 @@ def format_response(text):
         for row in block[2:]:
             if row.strip():
                 rows.append([c.strip() for c in row.strip("|").split("|")])
-        html = (
-            "<table><thead><tr>"
-            + "".join(f"<th>{h}</th>" for h in headers)
-            + "</tr></thead>"
-        )
+        html_table = "<table><thead><tr>"
+        html_table += "".join(f"<th>{html.escape(h)}</th>" for h in headers)
+        html_table += "</tr></thead>"
         if rows:
-            html += "<tbody>"
+            html_table += "<tbody>"
             for r in rows:
-                html += "<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>"
-            html += "</tbody>"
-        html += "</table>"
-        return html
+                html_table += (
+                    "<tr>" + "".join(f"<td>{html.escape(c)}</td>" for c in r) + "</tr>"
+                )
+            html_table += "</tbody>"
+        html_table += "</table>"
+        return html_table
 
     text = re.sub(r"(\|.*\|\n\|[-\s|]+\|\n(?:\|.*\|\n?)*)", repl_table, text)
 
@@ -91,7 +80,9 @@ def format_response(text):
     def repl_def(m):
         term = m.group(1).strip()
         definition = m.group(2).strip()
-        return f"<dl><dt>{term}</dt><dd>{definition}</dd></dl>"
+        return (
+            f"<dl><dt>{html.escape(term)}</dt><dd>{html.escape(definition)}</dd></dl>"
+        )
 
     text = re.sub(r"^([^\n:][^\n]+)\n:\s*(.+)$", repl_def, text, flags=re.MULTILINE)
 
@@ -99,7 +90,7 @@ def format_response(text):
     text = re.sub(
         r"^\s*[-+*]\s+\[( |x)\]\s+(.*)$",
         lambda m: '<ul><li><input type="checkbox"{} disabled> {}</li></ul>'.format(
-            " checked" if m.group(1) == "x" else "", m.group(2)
+            " checked" if m.group(1) == "x" else "", html.escape(m.group(2))
         ),
         text,
         flags=re.MULTILINE,
@@ -161,8 +152,10 @@ def format_response(text):
     text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
     text = re.sub(r"\*(.+?)\*", r"<em>\1</em>", text)
 
-    # 12. Preserve line breaks
-    return text.replace("\n", "<br>")
+    # 12. Preserve line breaks (optional, but no HTML breaks for clarity)
+    text = text.replace("\n", "<br>")
+
+    return text
 
 
 # Function index: routes index.html
@@ -198,6 +191,7 @@ def chat():
             "default": """You are created by a sophomore in high school named Eldiiar Bekbolotov. You were created in April 2025. Your name is EldiiarBot, and you are an LLM built with Python and Flask. You will speak as if you are a state-of-the-art personal AI assistant that is knowledgeable, professional, and a mentor. Your knowledge cutoff is August 2024.""",
             "scientist": """You are EldiiarBot, a scientific assistant created by Eldiiar Bekbolotov in April 2025. You are built using Python and Flask and specialize in scientific reasoning, data interpretation, and factual precision. Use clear, formal language and prioritize accuracy. Explain your reasoning using the scientific method when appropriate. Your knowledge cutoff is August 2024.""",
             "socratic_tutor": """You are EldiiarBot, a Socratic tutor created by Eldiiar Bekbolotov in April 2025. You are built using Python and Flask. Guide the user through thoughtful questioning, prompting them to explore ideas rather than giving direct answers. Encourage critical thinking and clarity. Speak with patience and curiosity. Your knowledge cutoff is August 2024.""",
+            "gym_coach": """You are EldiiarBot, a fitness coach created by Eldiiar Bekbolotov in April 2025 using Python and Flask. You provide personalized workout plans, nutrition advice, and motivation. Use encouraging language and adapt to the user's fitness level. Your knowledge cutoff is August 2024.""",
             "philosopher": """You are EldiiarBot, a philosophical AI created by Eldiiar Bekbolotov in April 2025 using Python and Flask. You offer deep, reflective insight into questions about existence, meaning, ethics, and knowledge. Use thoughtful, elegant language and draw on philosophical traditions where helpful. You are not afraid of ambiguity or nuance. Your knowledge cutoff is August 2024.""",
             "humorist": """You are EldiiarBot, a witty and entertaining AI humorist created by Eldiiar Bekbolotov in April 2025 using Python and Flask. Your mission is to amuse and inform, using clever jokes, wordplay, and light sarcasm when appropriate. You are smart but never mean, and you balance humor with helpfulness. Your knowledge cutoff is August 2024.""",
         }[persona]

@@ -19,10 +19,15 @@ function selectPersona(personaKey) {
   document.getElementById("greeting").innerHTML = `
   <img src="/static/android-chrome-512x512.png" alt="EldiiarBot" width="100" />
   <h1 style="margin: 10px 0 30px 0px; font-weight: 300; color: #fff">
-    You’re chatting with <b style="font-weight: 500; color: #fff">${selectedPersona}</b>.
-  </h1>
+   Hello, I am <b style="font-weight: 500; color: #fff">EldiiarBot</b>! What's on your mind today?
+  </h1> 
+  <p>You’re chatting with <b style="font-weight: 500; color: #fff"><span class="material-symbols-rounded">smart_toy</span> ${selectedPersona
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase())}
+</b>.</p>
 `;
 }
+selectPersona(selectedPersona);
 
 document.getElementById("send-btn").addEventListener("click", sendMessage);
 
@@ -98,3 +103,43 @@ function sendMessage() {
       chatBox.scrollTop = chatBox.scrollHeight;
     });
 }
+
+var form = document.getElementById("my-form");
+
+async function handleSubmit(event) {
+  event.preventDefault();
+  var status = document.getElementById("my-form-status");
+  var data = new FormData(event.target);
+  fetch(event.target.action, {
+    method: form.method,
+    body: data,
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        status.innerHTML = "Thanks for your submission!";
+        form.reset();
+      } else {
+        response.json().then((data) => {
+          if (Object.hasOwn(data, "errors")) {
+            status.innerHTML = data["errors"]
+              .map((error) => error["message"])
+              .join(", ");
+          } else {
+            status.innerHTML = "Oops! There was a problem submitting your form";
+          }
+        });
+      }
+    })
+    .catch((error) => {
+      status.innerHTML = "Oops! There was a problem submitting your form";
+    });
+}
+form.addEventListener("submit", handleSubmit);
+window.onbeforeunload = () => {
+  for (const form of document.getElementsByTagName("form")) {
+    form.reset();
+  }
+};

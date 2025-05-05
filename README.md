@@ -4,10 +4,11 @@ is an MIT-licensed project built by Eldiiar Bekbolotov, a sophomore in high scho
 
 <a href='https://eldiiarbot.onrender.com/' target='_blank'>View Demo</a>
 
-_LLM Web App with Python_
+_Fullstack LLM Web App with Python_
 Initially deployed on Render April 2025.
 
 ## Tech Stack
+
 - **Python**
 - **Flask** — Backend web framework
 - **Gunicorn** — WSGI server
