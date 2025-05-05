@@ -1,3 +1,4 @@
+// (c) 2025 Eldiiar Bekbolotov. Licensed under the MIT License.
 class M3Select {
   constructor(container) {
     this.container = container;
