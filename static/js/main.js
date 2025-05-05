@@ -1,6 +1,13 @@
 // (c) 2025 Eldiiar Bekbolotov. Licensed under the MIT License.
 var scenes = document.getElementsByClassName("scene");
 var switchScene = function (index) {
+  if (index !== 0) {
+    document.getElementById("background-video").style.zIndex = "-1";
+    document.getElementById("background-video").style.display = "none";
+
+    document.getElementById("greeting").style.animation =
+      "0.1s showimg forwards";
+  }
   for (var i = 0; i < scenes.length; i++) {
     scenes[i].style.display = "none";
   }
@@ -54,6 +61,8 @@ function resetTimer() {
   document.getElementById("timer").innerText = timer.toFixed(2);
 }
 function sendMessage() {
+  document.getElementById("background-video").style.zIndex = "-1";
+  document.getElementById("background-video").style.display = "none";
   document.getElementById("greeting").style.display = "none";
   resetTimer();
   startTimer();

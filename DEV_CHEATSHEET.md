@@ -1,6 +1,6 @@
 # Developer/Maintainer Cheatsheet
 
-Hello! This is a beginner-friendly guide specifically for developers/maintainers (currently just Eldiiar Bekbolotov) to run the program on their device.
+This is a beginner-friendly guide specifically for developers/maintainers (currently just Eldiiar Bekbolotov) to run the program on their device.
 
 ## Local Setup
 

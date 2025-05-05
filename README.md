@@ -1,11 +1,19 @@
 # EldiiarBot
 
-is an MIT-licensed project built by Eldiiar Bekbolotov, a sophomore in high school.
+Presenting a _Fullstack LLM Web App with Python_
+Initially deployed on Render April 2025.
 
 <a href='https://eldiiarbot.onrender.com/' target='_blank'>View Demo</a>
 
-_Fullstack LLM Web App with Python_
-Initially deployed on Render April 2025.
+Built by Eldiiar Bekbolotov as a sophomore in high school.
+
+## Features
+
+A web interface to talk with EldiiarBot, your AI Assistant. It's free, fast, and easy to use.
+
+Tailor EldiiarBot to fit your needs with 6 different options like Scientist, Socratic Tutor, Gym Coach, and more.
+
+Responsive, material design compliant, customizable theme, all done without any external CSS frameworks or libraries.
 
 ## Tech Stack
 
@@ -17,3 +25,6 @@ Initially deployed on Render April 2025.
 - **Render** — Cloud deployment
 - **PostgreSQL** (via **Supabase**) — Database
 - **CSS and JS** - Vanilla CSS and JS, no libraries or frameworks used
+
+Tested on all major browsers, operating systems, and over 20 modern devices.
+Use the issues tab in this repository to report anything broken.
