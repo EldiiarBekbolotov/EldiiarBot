@@ -9,10 +9,6 @@ Presenting a _Fullstack AI Chatbot Web App with Python_, initially deployed on R
 
 Built by Eldiiar Bekbolotov as a sophomore in high school.
 
-### Step-by-Step Tutorial: Learn how to build this!
-
-Read it on <a href='https://medium.com/' target="_blank">Medium.com</a>
-
 ## Features
 
 A web interface to talk with EldiiarBot, your AI chatbot. It's free, fast, and easy to use.
@@ -34,3 +30,6 @@ Responsive, material design compliant, customizable theme, all done without any 
 
 Tested on all major browsers, operating systems, and over 20 modern devices.
 Use the issues tab in this repository to report anything broken.
+
+### What I Learned from Building an AI Chatbot
+Read it on <a href='https://medium.com/p/5516e40acc6b' target="_blank">Medium.com</a>
