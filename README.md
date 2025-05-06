@@ -1,7 +1,9 @@
 # EldiiarBot
+<img width="1008" alt="Screenshot 2025-05-06 at 5 10 37 PM" src="https://github.com/user-attachments/assets/2da7fe17-4a43-427e-9156-a4dc2ef23522" />
 
-Presenting a _Fullstack AI Chatbot Web App with Python_
-Initially deployed on Render April 2025.
+Presenting a _Fullstack AI Chatbot Web App with Python_, initially deployed on Render April 2025.
+
+<img alt="GitHub Release" src="https://img.shields.io/github/v/release/https%3A%2F%2Fgithub.com%2FEldiiarBekbolotov/https%3A%2F%2Fgithub.com%2FEldiiarBekbolotov%2FEldiiarBot%2F">
 
 <a href='https://eldiiarbot.onrender.com/' target='_blank'>View Demo</a>
 
