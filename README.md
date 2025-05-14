@@ -18,12 +18,12 @@ Responsive, material design compliant, customizable theme, all done without any 
 ## Tech Stack
 
 - **Python**
-- **Flask** — Backend web framework
-- **Gunicorn** — WSGI server
-- **Jinja2** — Templating engine
-- **Groq API** — AI services
-- **Render** — Cloud deployment
-- **psycopg** (via **Supabase PostgreSQL**) — User views and like button
+- **Flask** - Backend web framework
+- **Gunicorn** - WSGI server
+- **Jinja2** - Templating engine
+- **Groq API** - AI services
+- **Render** - Cloud deployment
+- **psycopg** (via **Supabase PostgreSQL**) - User views and like button
 - **CSS and JS** - Vanilla CSS and JS, no libraries or frameworks used
 
 Tested on all major browsers, operating systems, and over 20 modern devices.
